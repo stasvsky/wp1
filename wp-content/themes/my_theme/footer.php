@@ -1,3 +1,5 @@
+</main>
+
 <?php
 	$args = array(
 		'theme_location' => 'Footer',
