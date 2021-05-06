@@ -18,3 +18,5 @@
 
 	wp_nav_menu($args);
 ?>
+
+<main class="main">
