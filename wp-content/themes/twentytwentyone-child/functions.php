@@ -13,4 +13,19 @@
 	);
 }
 
-add_action( 'widgets_init', 'register_wp_sidebar2' );
+add_action( 'widgets_init', 'register_wp_sidebar2' ); ?>
+
+<?php function get_widgets() {
+	if (is_registered_sidebar('wp_sidebar2')) : ?>
+		<div id="wp_sidebar2" class="sidebar">
+			<?php
+				if (is_active_sidebar( 'wp_sidebar2' )) {
+					dynamic_sidebar( 'wp_sidebar2' );
+				} else {
+					the_widget('WP_Widget_Search');
+					the_widget('WP_Widget_Categories');
+				}
+			?>
+		</div>
+	<?php endif;
+} ?>
