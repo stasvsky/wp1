@@ -9,4 +9,10 @@
 	<li>Number of pages: <?= get_field('bk_number_of_pages') ?></li>
 </ul>
 
+<?php if ( is_active_sidebar( 'wp_sidebar2' ) ) : ?>
+	<div id="wp_sidebar2" class="sidebar">
+		<?php dynamic_sidebar( 'wp_sidebar2' ); ?>
+	</div>
+<?php endif; ?>
+
 <?php get_footer(); ?>
