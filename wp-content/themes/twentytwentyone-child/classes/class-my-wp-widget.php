@@ -1,9 +1,4 @@
-<?php function hw_register_widget() {
-	register_widget( 'my_wp_widget' );
-}
-add_action( 'widgets_init', 'hw_register_widget' );
-
-class my_wp_widget extends WP_Widget {
+<?php class my_wp_widget extends WP_Widget {
 	public function __construct() {
 		$widget_options = array(
 			 'classname' => 'hw_widget',
