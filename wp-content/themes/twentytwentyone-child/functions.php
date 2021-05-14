@@ -38,6 +38,7 @@ add_action( 'widgets_init', 'register_wp_sidebar2' ); ?>
 add_action( 'widgets_init', 'hw_register_widget' ); ?>
 
 <?php add_action('init', 'my_custom_init');
+
 function my_custom_init(){
 	register_post_type('news', array(
 		'labels'             => array(
@@ -65,7 +66,7 @@ function my_custom_init(){
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => null,
-		'supports'           => array('title','editor','author','thumbnail','excerpt','comments')
+		'supports'           => array('title','editor','custom-fields','author','thumbnail','excerpt','comments')
 	) );
 }
 
@@ -101,9 +102,3 @@ function add_help_text( $contextual_help, $screen_id, $screen ){
 
 	return $contextual_help;
 } ?>
-
-<?php function true_custom_fields() {
-	add_post_type_support( 'news', 'custom-fields');
-}
-
-add_action('init', 'true_custom_fields'); ?>
