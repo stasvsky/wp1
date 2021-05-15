@@ -9,7 +9,6 @@
 
 	public function widget( $args, $instance ) {
 		$title = apply_filters( 'widget_title', $instance[ 'title' ] );
-		//$color = implode('', get_post_meta( 68, 'widget_text_color' ));
 		$color = get_option('widget_text_color');
 
 		echo $args['before_widget'] . $args['before_title'] . $title . $args['after_title']; ?>
@@ -20,7 +19,6 @@
 	public function form( $instance ) {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : '';
 		$widget_text_color = isset($_POST['widget_text_color']) ? $_POST['widget_text_color'] : '';
-		//add_post_meta( 68, 'widget_text_color', $widget_text_color, true ) or update_post_meta( 68, 'widget_text_color', $widget_text_color );
 		if (empty(get_option('widget_text_color'))) {
 			add_option( 'widget_text_color', $widget_text_color ); } else {
 			update_option( 'widget_text_color', $widget_text_color );} ?>
