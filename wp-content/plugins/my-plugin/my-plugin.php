@@ -1,8 +1,8 @@
 <?php
 /*
- * Plugin Name: My plugin
- * Description: Plugin turn on text widget
- */
+* Plugin Name: My plugin
+* Description: Plugin turn on text widget
+*/
 
 register_activation_hook( __FILE__, 'hw_register_widget' );
 
