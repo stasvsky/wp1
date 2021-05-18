@@ -32,11 +32,6 @@ add_action( 'widgets_init', 'register_wp_sidebar2' ); ?>
 	<?php endif;
 } ?>
 
-<?php function hw_register_widget() {
-	register_widget( 'My_wp_widget' );
-}
-add_action( 'widgets_init', 'hw_register_widget' ); ?>
-
 <?php add_action( 'init', 'my_custom_init' );
 
 function my_custom_init(){
