@@ -11,4 +11,8 @@
 
 <?php get_widgets(); ?>
 
+<ul>
+	<?php if( function_exists( 'displaying_posts' ) ) displaying_posts(); ?>
+</ul>
+
 <?php get_footer(); ?>
