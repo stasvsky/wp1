@@ -1,4 +1,4 @@
-<?php require_once('classes/class-my-wp-widget.php'); ?>
+<?php require_once( 'classes/class-my-wp-widget.php' ); ?>
 
 <?php function register_wp_sidebar2() {
 
@@ -10,7 +10,7 @@
 			'before_widget' => '<div id="%1$s" class="side widget %2$s">',
 			'after_widget' => '</div>',
 			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>'
+			'after_title' => '</h3>',
 		)
 	);
 }
@@ -18,28 +18,24 @@
 add_action( 'widgets_init', 'register_wp_sidebar2' ); ?>
 
 <?php function get_widgets() {
-	if (is_registered_sidebar('wp_sidebar2')) : ?>
+	if ( is_registered_sidebar( 'wp_sidebar2' ) ) : ?>
 		<div id="wp_sidebar2" class="sidebar">
 			<?php
-				if (is_active_sidebar( 'wp_sidebar2' )) {
+				if ( is_active_sidebar( 'wp_sidebar2' ) ) {
 					dynamic_sidebar( 'wp_sidebar2' );
 				} else {
-					the_widget('WP_Widget_Search');
-					the_widget('WP_Widget_Categories');
+					the_widget( 'WP_Widget_Search' );
+					the_widget( 'WP_Widget_Categories' );
 				}
 			?>
 		</div>
 	<?php endif;
 } ?>
 
-<?php function hw_register_widget() {
-	register_widget( 'my_wp_widget' );
-}
-add_action( 'widgets_init', 'hw_register_widget' ); ?>
+<?php add_action( 'init', 'my_custom_init' );
 
-<?php add_action('init', 'my_custom_init');
 function my_custom_init(){
-	register_post_type('news', array(
+	register_post_type( 'news', array(
 		'labels'             => array(
 			'name'               => 'News',
 			'singular_name'      => 'News',
@@ -52,7 +48,7 @@ function my_custom_init(){
 			'not_found'          => 'News not found',
 			'not_found_in_trash' => 'News not found in trash',
 			'parent_item_colon'  => '',
-			'menu_name'          => 'News'
+			'menu_name'          => 'News',
 		),
 
 		'public'             => true,
@@ -65,11 +61,11 @@ function my_custom_init(){
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => null,
-		'supports'           => array('title','editor','author','thumbnail','excerpt','comments')
+		'supports'           => array('title','editor','custom-fields','author','thumbnail','excerpt','comments'),
 	) );
 }
 
-add_filter('post_updated_messages', 'news_updated_messages');
+add_filter( 'post_updated_messages', 'news_updated_messages' );
 function news_updated_messages( $messages ) {
 	global $post;
 
@@ -79,7 +75,7 @@ function news_updated_messages( $messages ) {
 		2 => 'Custom field updated.',
 		3 => 'Custom field removed.',
 		4 => 'News updated.',
-		5 => isset($_GET['revision']) ? sprintf( 'News restored from revision %s', wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+		5 => isset( $_GET['revision'] ) ? sprintf( 'News restored from revision %s', wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
 		6 => sprintf( 'News was published. <a href="%s">Go to news</a>', esc_url( get_permalink($post->ID) ) ),
 		7 => 'News saved.',
 		8 => sprintf( 'News saved. <a target="_blank" href="%s">News preview</a>', esc_url( add_query_arg( 'preview', 'true', get_permalink($post->ID) ) ) ),
@@ -101,9 +97,3 @@ function add_help_text( $contextual_help, $screen_id, $screen ){
 
 	return $contextual_help;
 } ?>
-
-<?php function true_custom_fields() {
-	add_post_type_support( 'news', 'custom-fields');
-}
-
-add_action('init', 'true_custom_fields'); ?>
